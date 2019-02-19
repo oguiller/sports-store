@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Product } from './product.model';
 import { Observable, from } from 'rxjs';
+import { Order } from "./order.model";
+
 
 @Injectable()
 // This decorator is used to tell Angular that this class will be used as a service, which allows other classes to access its functionality
@@ -26,5 +28,10 @@ export class StaticDataSource {
 
   getProducts(): Observable<Product[]> {
     return from([this.products]);
+  }
+
+  saveOrder(order: Order): Observable<Order> {
+    console.log(JSON.stringify(order));
+    return from([order]);
   }
 }
