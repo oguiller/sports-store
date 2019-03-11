@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 import { CartDetailComponent } from './store/cartDetail.component';
@@ -24,7 +26,8 @@ import { StoreFirstGuard } from './storeFirst.guard';
         canActivate: [StoreFirstGuard]
       },
       {path: '**', redirectTo: '/store'}
-    ])],
+    ]),
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})],
   providers: [StoreFirstGuard],
   bootstrap: [AppComponent]
 })
